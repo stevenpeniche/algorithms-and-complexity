@@ -1,0 +1,11 @@
+1) goodbye_world will always take a constant time of 1 operation to run so it's Big-O is O(1).
+
+2) find_largest will perform one operation per "n" where "n" equals the number of elements in "collection". Therefore it runs in linear time and it's Big-O is O(n).
+
+3) find_largest_2D_array will perform two operations per "n" number of elements in collection. It'll run in quadratic time, making it's Big-O O(2^n).
+
+4) The best case for numbers_recursive are n = 0 and n = 1. For any n > 1, numbers_recursive performs two recursive calls which means it runs in quadratic time and it's Big-O is O(2^n).
+
+5) numbers_iterative will perform n - 1 operations which translates to one less than the integer argument passed in. This algorithm runs in linear time and it's Big-O is O(n).
+
+6) The best case for sort is a collection.length of 1. For any collection.length > 1, sort performs n - 1 operations and two recursive calls per n. We drop the "- 1" leaving "n" because we ignore constants when approximating algorithm time complexities and we're left with a log linear run time and a Big-O of O(n logn).
