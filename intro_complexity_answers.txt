@@ -1,0 +1,23 @@
+1) An algorithm that runs at O(1) is an NFL running back and an algorithm that runs in O(2^n) is an NFL offensive lineman.
+
+2) The best case scenario for binary search is finding the search value at the middle index of a data-set on the first iteration.
+
+3) The worst case scenario for binary search is finding the search value on the last iteration.
+
+4) The bounded-case scenario for binary search is somewhere in between constant and logarithmic time. Given those boundaries we can say it can't be better than constant time nor worse than logarithmic time so its bounded-case scenario must be logarithmic time.
+
+5) SENT AS LINK.
+
+6) After analyzing the graph, I noticed that as the dataset grew larger towards positive infinity, the number of computations also grew larger towards positive infinity so the limit of this graph is Infinity.
+
+7) The number of computations doubles with every increase if n, so I would say the Big-O of an algorithm with this dataset is O(2^n).
+
+8) In worst_case_linear.rb
+
+9) SENT AS LINK.
+
+10) The Big-O of Linear Search is O(n).
+
+11) The Big-Ω of Linear Search is Ω(1).
+
+12) The Big-Ө of Linear Search is Ө(n).
