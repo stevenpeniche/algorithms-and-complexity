@@ -28,7 +28,7 @@ def poorly_written_ruby(arrays)
 	sorted_array
 end
 
-data = [[1, 3, 2], [6, 5, 4], [7, 8, 7]]
+data = [Array(1..100).shuffle, Array(101..200).shuffle, Array(201..300).shuffle]
 time = Benchmark.realtime do
 	poorly_written_ruby(data)
 end
