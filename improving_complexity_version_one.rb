@@ -13,8 +13,7 @@ def poorly_written_ruby(arrays)
 	for val in combined_array
 		i = 0
 		while i < sorted_array.length
-			element = sorted_array[i]
-			if val < element
+			if val < sorted_array[i]
 				sorted_array.insert(i, val)
 				break
 			elsif i == sorted_array.length - 1
