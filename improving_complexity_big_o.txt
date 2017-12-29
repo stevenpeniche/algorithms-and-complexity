@@ -1,3 +1,82 @@
-Version 1's Big-O: O(n^2), average runtime on my machine = 2.654 milliseconds
-Version 2's Big-O: O(n^2), average runtime on my machine = 0.529 milliseconds
-Version 3's Big-O: O(n^2), average runtime on my machine = 1.277 milliseconds
+Version 1)
+	Big-O: O(n^2), average runtime on my machine = 2.654 milliseconds.
+
+	Algorithm Explanation: The algorithm works as follows.
+	1) Accept an "array" of multiple "arrays" as input
+	2) Assign and empty array to a variable "combined_array"
+	3) Iterate over every "array" in "arrays"
+		4) Iterate over every "value" in "array"
+			5) Insert "value" into "combined_array"
+	6) Remove the last element from "combined_array" and insert into "sorted_array"
+	7) Iterate over every "val"(value) in "combined_array"
+	8) Assign "0" to the variable "i"(serves as the current index)
+	9) Run a code block WHILE "i" is less than the length of "sorted_array"
+		10) IF "val" is less than the value at "sorted_array[i]", move all values to the
+				right of index "i" one index over and insert "val" into that index, i.e. "sorted_array[i]".
+				Then BREAK the WHILE loop.
+				ELSIF "i" is equal to "sorted_array.length - 1", i.e. no value has been added
+				to "sorted_array" therefore it's (length - 1) is still equal to the value of
+				"i" than the value at "val" must be greater than the value at "sorted_array[i]",
+				so proceed to inserting it one after the last element using ".push".
+				Then BREAK the WHILE loop.
+				END IF
+		11) Increment "i" by 1 if none of the conditionals we're met.
+	12) END WHILE loop, "sorted_array" is fully sorted
+	13) RETURN "sorted_array"
+
+	Optimizations: In order to optimize the original code base I switched array
+	insertion methods from "<<" to ".push", on lines 7 and 20, because it provided
+	a slight decrease in run time. After that I noticed the algorithm was using
+	Ruby's "delete_at" method to remove the last item from "combined_array" and
+	place it inside of the "sorted_array" variable on line 11. I felt that the better
+	method to use if we just need to access and remove the last element in
+	"combined_array" is ".pop" which has a faster run time. The final optimization I
+	implemented was on line 16; I switched "<=" to just "<" because in the case that
+	"val" is less than "sorted_array[i]" it doesn't matter if its placed before or
+	after it.
+
+Version 2)
+	Big-O: O(n^2), average runtime on my machine = 0.529 milliseconds.
+
+	Algorithm Explanation: The algorithm works as follows.
+	1) Accept an "array" of multiple "arrays" as input
+	2) IF the length of "arrays" is greater than 1, i.e. "arrays" contains more than
+		 one array.
+			 3a) call the "combine" method on "arrays"
+			 		 which..
+				 	  4) Iterates over every "array" in "arrays"
+				 		 5) Iterates over every "value" in "array"
+				 		 	6) Inserts "value" into "combined_array"
+			 7) Sort "combined_array", which is the value returned by "combine(arrays)",
+			 		using the "bucket sort" implementation
+			 8) RETURN the value, i.e. "sort(combine(arrays))"
+		 ELSIF the length of "arrays" is 1, i.e. "arrays" only contains one "array",
+		 there's no need to combine the arrays in "arrays".
+			 3b) Just sort the array at "arrays[0]" using the bucket sort implementation
+			 		 stored in the method "sort".
+			 4b) RETURN "arrays[0]"
+		 ELSE (i.e. if "arrays" doesn't contain any elements(is empty))
+		 	 3c) RETURN arrays
+		 END IF
+
+	Improvements: To improve the algorithm's overall time complexity I replaced it's
+	sorting algorithm with "bucket sort". Bucket sort which has a worst case of O(n^2)
+	but an average case of O(n + k) maintains it's speed a lot better, as the the data
+	set scales in size, than it's original sorting algorithm. i.e. insertion sort.
+	The reason for that is, bucket sort breaks the data-set into buckets
+	of similar integer values no bigger than 5 elements(can be larger/smaller) and
+	runs insertion sort(can be any sorting algorithm) on each bucket. It then iterates
+	over every bucket from index 0 to index bucket.length - 1 and pushes the value
+	into one final sorted array. This results in a faster overall algorithm run time.
+
+Version 3)
+	Big-O: O(n^2), average runtime on my machine = 1.277 milliseconds.
+
+	*The variable "look_up_hash" was mistakenly left in there, it has no usage*
+
+	Algorithm Explanation: The major differences between Version 3's and Version 1's
+	overall algorithm is the inclusion of 4 new variables, "highest_value",
+	"highest_value_index" and "index". Then at line 21, the largest value in the "combined_array"
+	is accessed by utilizing the index stored at "highest_value_index". This element is than stored in "sorted_array". Starting with the largest value in "combined_array" instead of the last element in "combined_array" allows us to only worry about inserting elements smaller than that initial value therefore eliminating the need for a second conditional in the WHILE loop.
+
+	Improvements: These changes increased space consumption in exchange for a slight run time decrease.
